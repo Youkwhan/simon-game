@@ -8,7 +8,7 @@ Players need to repeat random sequences of blinking lights by pressing colored p
 
 ## Usage
 
-To play the game, simply visit the [live demo](insert_link_here) of the game in your browser.
+To play the game, simply visit the [live demo](https://youkwhan.github.io/simon-game/) of the game in your browser.
 
 ## Installation
 
