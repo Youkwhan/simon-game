@@ -4,18 +4,61 @@ let buttonColors = ["red", "blue", "green", "yellow"];
 let level = 0;
 let started = false;
 
+// Processes button clicks if game is running
 $(".btn").click(function (event) {
 	if (started) {
 		let userChosenColor = event.target.id;
-		userClickedPattern.push(userChosenColor);
 
-		animatePress(userChosenColor);
-		playSound(userChosenColor);
-
-		checkAnswer(userClickedPattern.length - 1);
+		processUserInput(userChosenColor);
 	}
 });
 
+// Processes keyboard press if game is running
+$(document).keydown(function (event) {
+	if (started) {
+		let color = "";
+		switch (event.key) {
+			case "w":
+			case "ArrowUp":
+				color = "green";
+				// console.log(color);
+				break;
+
+			case "a":
+			case "ArrowLeft":
+				color = "yellow";
+				// console.log(color);
+				break;
+
+			case "s":
+			case "ArrowDown":
+				color = "blue";
+				// console.log(color);
+				break;
+
+			case "d":
+			case "ArrowRight":
+				color = "red";
+				// console.log(color);
+				break;
+
+			default:
+				break;
+		}
+		if (color !== "") {
+			processUserInput(color);
+		}
+	}
+});
+
+function processUserInput(userChosenColor) {
+	userClickedPattern.push(userChosenColor);
+	animatePress(userChosenColor);
+	playSound(userChosenColor);
+	checkAnswer(userClickedPattern.length - 1);
+}
+
+// Next pattern from the game
 function nextSequence() {
 	userClickedPattern.length = 0;
 	level++;
@@ -31,6 +74,7 @@ function nextSequence() {
 	console.log(gamePattern);
 }
 
+// compare what we inputted with the game pattern
 function checkAnswer(currentLevel) {
 	if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
 		if (currentLevel + 1 === gamePattern.length) {
@@ -49,11 +93,13 @@ function checkAnswer(currentLevel) {
 	}
 }
 
+// play audio of buttons
 function playSound(name) {
 	let audio = new Audio(`./sounds/${name}.mp3`);
 	audio.play();
 }
 
+// animate button being pressed
 function animatePress(currentColor) {
 	$(`#${currentColor}`).addClass("pressed");
 	setTimeout(() => {
@@ -61,6 +107,7 @@ function animatePress(currentColor) {
 	}, 100);
 }
 
+// game over
 function startOver() {
 	level = 0;
 	started = false;
@@ -68,6 +115,7 @@ function startOver() {
 	console.log(gamePattern);
 }
 
+// game initalization
 function main() {
 	$(document).keydown(function () {
 		if (!started) {
@@ -77,4 +125,5 @@ function main() {
 		}
 	});
 }
+
 main();
