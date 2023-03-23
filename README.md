@@ -21,6 +21,8 @@ To run the game on your local machine, you can follow these steps:
 ## Future Improvements
 
 In the future, I plan to add keyboard functionality to the game, so that players can use the keyboard instead of clicking on the buttons. 
+A scoreboard, to keep track of your highscore. And a button hint "Show Full Patten (3 Left)" that will help the player to progress to even farther heights! 
+
 
 ## Contact
 
